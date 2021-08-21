@@ -6,13 +6,18 @@
     <title>jQuery</title>
 </head>
 <body>
-    <button type="button">Button</button>
-    <button type="button">Button2</button>
-
+    <div id="joke"></div>
+    <button id="punchlineBtn" type="button">Punchline</button>
+    <div id="punchline"></div>
 <script>
-    $('button').click(function () {
-        alert('alert');
-        console.log('test');
+    let punchline;
+    $.get("http://official-joke-api.appspot.com/random_joke", null, function (data) {
+        punchline = data.punchline;
+       $('#joke').html(data.setup);
+    });
+
+    $('#punchlineBtn').click(function () {
+        $('#punchline').html(punchline);
     });
 </script>
 </body>
